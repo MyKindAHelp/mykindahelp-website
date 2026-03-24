@@ -43,6 +43,17 @@
         .nav-links span::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--color-terracotta), var(--color-sage)); transition: width 0.3s; }
         .nav-links span:hover { color: var(--color-terracotta); }
         .nav-links span:hover::after { width: 100%; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: flex; align-items: center; gap: 0.3rem; }
+        .nav-dropdown > a svg { transition: transform 0.3s; }
+        .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+        .dropdown-menu { position: absolute; top: calc(100% + 0.75rem); left: 50%; transform: translateX(-50%); background: white; border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.12); border: 1px solid var(--color-light-gray); padding: 0.5rem; min-width: 230px; opacity: 0; visibility: hidden; transition: all 0.25s; z-index: 200; }
+        .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+        .dropdown-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 10px; color: var(--color-charcoal) !important; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+        .dropdown-menu a::after { display: none !important; }
+        .dropdown-menu a:hover { background: var(--color-cream); color: var(--color-terracotta) !important; }
+        .dropdown-menu a svg { color: var(--color-terracotta); flex-shrink: 0; }
+        .dropdown-divider { height: 1px; background: var(--color-light-gray); margin: 0.4rem 0.5rem; }
         .btn-primary { background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark)); color: white !important; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 15px rgba(59,163,208,0.3); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59,163,208,0.4); }
         .btn-primary::after { display: none; }
@@ -179,7 +190,24 @@
     <nav class="navbar">
         <a href="index.html" class="logo">MyKindAHelp</a>
         <div class="nav-links">
-            <a href="services.html">Services</a>
+            <div class="nav-dropdown">
+                <a href="services.html">Services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a>
+                <div class="dropdown-menu">
+                    <a href="services.html">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        All Services
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="websites.html">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        Websites &amp; Online Visibility
+                    </a>
+                    <a href="ai-implementation.html">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><rect x="9" y="12" width="6" height="10" rx="1"/></svg>
+                        AI Implementation
+                    </a>
+                </div>
+            </div>
             <span onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</span>
             <span onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</span>
             <a href="https://mykindahelp.setmore.com/" target="_blank" rel="noopener" class="btn-primary">Book Now</a>
