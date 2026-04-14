@@ -1,259 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>90-Day AI Implementation | MyKindAHelp</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-cream: #EEF4F7;
-            --color-warm-white: #FFFFFF;
-            --color-terracotta: #3BA3D0;
-            --color-terracotta-dark: #2B8AB5;
-            --color-terracotta-light: #6BBDE0;
-            --color-charcoal: #3A4A5C;
-            --color-warm-gray: #5A6A7A;
-            --color-light-gray: #D0DDE5;
-            --color-sage: #8BC53F;
-            --font-display: 'DM Serif Display', Georgia, serif;
-            --font-body: 'Instrument Sans', -apple-system, sans-serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--color-warm-white); color: var(--color-charcoal); line-height: 1.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | MyKindAHelp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #2da8a8;
+    --teal-light: #e6f7f7;
+    --teal-dark: #1d8a8a;
+    --green: #4caf50;
+    --green-light: #e8f5e9;
+    --navy: #1a2332;
+    --text: #334155;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg: #ffffff;
+    --bg-light: #f8fafc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 10px 25px rgba(0,0,0,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
 
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  /* NAV — matches main site */
+  nav { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-size: 1.1rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-label { color: var(--text); font-size: 0.9rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .book-btn { background: var(--teal); color: white; padding: 0.5rem 1.25rem; border-radius: 100px; text-decoration: none; font-size: 0.88rem; font-weight: 600; transition: background 0.2s; }
+  .book-btn:hover { background: var(--teal-dark); }
 
-        .navbar { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 4%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(59,163,208,0.1); animation: slideDown 0.6s ease-out; }
-        .logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-terracotta); text-decoration: none; transition: transform 0.3s; }
-        .logo:hover { transform: scale(1.05); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--color-charcoal); font-size: 0.9rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0; position: relative; transition: color 0.3s; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--color-terracotta), var(--color-sage)); transition: width 0.3s; }
-        .nav-links a:hover { color: var(--color-terracotta); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a.active { color: var(--color-terracotta); }
-        .nav-links a.active::after { width: 100%; }
-        .btn-primary { background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark)); color: white !important; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 15px rgba(59,163,208,0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59,163,208,0.4); }
-        .btn-primary::after { display: none; }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-        .mobile-menu-btn span { width: 25px; height: 2px; background: var(--color-charcoal); }
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #f0fdfc 0%, #f8fafc 60%, #f0fdf4 100%); padding: 80px 1.5rem; text-align: center; }
+  .hero-inner { max-width: 700px; margin: 0 auto; }
+  .hero-badge { display: inline-block; background: var(--teal-light); color: var(--teal-dark); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 1.25rem; }
+  .hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--teal); }
+  .hero p { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; }
 
-        .page-hero { padding: 10rem 4% 5rem; background: linear-gradient(135deg, var(--color-charcoal) 0%, #1e2a36 100%); position: relative; overflow: hidden; text-align: center; }
-        .page-hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(59,163,208,0.2) 0%, transparent 60%); pointer-events: none; }
-        .page-hero::after { content: ''; position: absolute; bottom: -50%; left: -20%; width: 60%; height: 150%; background: radial-gradient(ellipse, rgba(139,197,63,0.15) 0%, transparent 60%); pointer-events: none; }
-        .page-hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; animation: slideUp 0.6s ease-out; }
-        .page-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); color: white; margin-bottom: 1rem; }
-        .page-hero p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 2rem; line-height: 1.7; }
-        .hero-price { display: inline-flex; align-items: baseline; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); }
-        .hero-price .amount { font-family: var(--font-display); font-size: 2.5rem; color: white; }
-        .hero-price .period { color: rgba(255,255,255,0.7); }
+  /* SECTION */
+  .section { max-width: 1100px; margin: 0 auto; padding: 60px 1.5rem; }
+  .section-header { margin-bottom: 2.5rem; }
+  .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+  .section-title { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .section-sub { color: var(--muted); font-size: 0.95rem; max-width: 500px; }
 
-        .section { padding: 5rem 4%; }
-        .section.alt { background: var(--color-cream); }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-label { display: inline-block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-terracotta); margin-bottom: 1rem; padding: 0.5rem 1rem; background: rgba(59,163,208,0.1); border-radius: 50px; }
-        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); color: var(--color-charcoal); line-height: 1.2; margin-bottom: 1rem; }
-        .section-subtitle { font-size: 1.1rem; color: var(--color-warm-gray); line-height: 1.7; max-width: 700px; }
+  /* SERVICE CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow); transition: box-shadow 0.25s, transform 0.25s; position: relative; }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 1.25rem; }
+  .tag-teal { background: var(--teal-light); color: var(--teal-dark); }
+  .tag-green { background: var(--green-light); color: #2e7d32; }
+  .tag-purple { background: #f3e8ff; color: #7c3aed; }
+  .tag-amber { background: #fef3c7; color: #b45309; }
+  .card-price { font-size: 2.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+  .card-price span { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
+  .card-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+  .card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
+  .card-features { list-style: none; margin-bottom: 1.75rem; }
+  .card-features li { font-size: 0.86rem; color: var(--text); padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.6rem; }
+  .card-features li:last-child { border-bottom: none; }
+  .check { color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .btn-teal { display: block; text-align: center; background: var(--teal); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: background 0.2s; }
+  .btn-teal:hover { background: var(--teal-dark); }
+  .btn-outline { display: block; text-align: center; background: white; color: var(--teal); border: 2px solid var(--teal); padding: 0.7rem 1.5rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+  .btn-outline:hover { background: var(--teal-light); }
+  .popular-badge { position: absolute; top: -0.7rem; right: 1.5rem; background: var(--teal); color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+  .delivery { display: flex; align-items: center; gap: 0.4rem; background: var(--bg-light); border-radius: 6px; padding: 0.45rem 0.75rem; font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem; }
 
-        .program-image { padding: 4rem 4%; background: white; }
-        .program-image img { width: 100%; max-width: 1000px; margin: 0 auto; display: block; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+  /* BUNDLE */
+  .bundle-card { background: linear-gradient(135deg, #f0fdfc, #f0fdf4); border: 2px solid var(--teal); border-radius: 20px; padding: 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; margin-bottom: 3rem; }
+  .bundle-title { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .bundle-desc { font-size: 0.92rem; color: var(--muted); max-width: 480px; margin-bottom: 0.75rem; }
+  .bundle-save { display: inline-block; background: var(--green-light); color: #2e7d32; font-size: 0.78rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; }
+  .bundle-price-block { text-align: center; min-width: 180px; }
+  .bundle-was { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; }
+  .bundle-price { font-size: 2.8rem; font-weight: 700; color: var(--navy); }
 
-        .phases-section { padding: 5rem 4%; background: var(--color-cream); }
-        .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .phase-card { background: white; border-radius: 20px; padding: 2.5rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.06); transition: all 0.3s; }
-        .phase-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-        .phase-number { position: absolute; top: -20px; left: 2rem; width: 50px; height: 50px; background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.5rem; color: white; box-shadow: 0 8px 20px rgba(59,163,208,0.3); }
-        .phase-card h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-charcoal); margin: 1rem 0 0.5rem; }
-        .phase-weeks { font-size: 0.9rem; font-weight: 600; color: var(--color-terracotta); margin-bottom: 1rem; }
-        .phase-card p { color: var(--color-warm-gray); line-height: 1.7; }
+  /* AI SCHEDULING */
+  .ai-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-bottom: 3rem; }
+  .ai-features { display: flex; flex-direction: column; gap: 1rem; }
+  .ai-feature { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .ai-feature h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+  .ai-feature p { font-size: 0.82rem; color: var(--muted); }
 
-        .whats-included { padding: 5rem 4%; background: white; }
-        .included-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
-        .included-item { display: flex; gap: 1.25rem; padding: 1.5rem; background: var(--color-cream); border-radius: 16px; transition: all 0.3s; }
-        .included-item:hover { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
-        .included-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
-        .included-content h4 { font-weight: 600; color: var(--color-charcoal); margin-bottom: 0.25rem; }
-        .included-content p { font-size: 0.9rem; color: var(--color-warm-gray); line-height: 1.6; }
+  /* FLAGSHIP */
+  .flagship { background: var(--navy); color: white; border-radius: 20px; padding: 2.5rem; margin-bottom: 60px; }
+  .flagship-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+  .flagship h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .flagship p { color: rgba(255,255,255,0.7); font-size: 0.92rem; max-width: 480px; }
+  .flagship-price { text-align: right; }
+  .flagship-price .price { font-size: 2.5rem; font-weight: 700; }
+  .flagship-price .period { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+  .phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 2rem; }
+  .phase { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.25rem; }
+  .phase-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+  .phase h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .phase p { font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+  .flagship-features { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.6rem; margin-bottom: 2rem; }
+  .flagship-feat { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.86rem; color: rgba(255,255,255,0.75); }
+  .flagship-feat::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+  .btn-white { display: inline-block; background: white; color: var(--navy); padding: 0.75rem 2rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: opacity 0.2s; }
+  .btn-white:hover { opacity: 0.9; }
 
-        .cta-section { padding: 5rem 4%; background: linear-gradient(135deg, var(--color-charcoal), #1e2a36); text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(59,163,208,0.2) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(139,197,63,0.15) 0%, transparent 50%); pointer-events: none; }
-        .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-        .cta-content h2 { font-family: var(--font-display); font-size: 2.5rem; color: white; margin-bottom: 1rem; }
-        .cta-content p { color: rgba(255,255,255,0.8); font-size: 1.15rem; margin-bottom: 2rem; line-height: 1.7; }
-        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .btn-white { background: white; color: var(--color-charcoal); padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
-        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .btn-outline-white { border: 2px solid rgba(255,255,255,0.5); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
-        .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, #f0fdfc, #f0fdf4); border-radius: 20px; padding: 3rem 2rem; text-align: center; margin: 0 1.5rem 60px; }
+  .cta-section h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+  .cta-section p { color: var(--muted); max-width: 420px; margin: 0 auto 2rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-main { background: var(--teal); color: white; padding: 0.85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; }
+  .btn-main:hover { background: var(--teal-dark); }
+  .btn-secondary { background: white; color: var(--teal); border: 2px solid var(--teal); padding: 0.75rem 2rem; border-radius: 10px; text-decoration: none; font-size: 0.95rem; font-weight: 600; }
 
-        .footer { padding: 3rem 4%; background: #1e2a36; color: white; }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-        .footer-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-terracotta-light); }
-        .footer-info, .footer-location { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+  footer { border-top: 1px solid var(--border); padding: 1.5rem; text-align: center; }
+  footer p { color: var(--muted); font-size: 0.85rem; }
 
-        @media (max-width: 1024px) {
-            .phases-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
-            .included-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: flex; }
-            .page-hero { padding: 8rem 4% 4rem; }
-            .page-hero h1 { font-size: 2rem; }
-            .hero-price .amount { font-size: 2rem; }
-            .section { padding: 4rem 4%; }
-            .cta-content h2 { font-size: 2rem; }
-        }
-    </style>
+  @media(max-width: 768px) {
+    .bundle-card, .ai-card { grid-template-columns: 1fr; }
+    .phases, .flagship-features { grid-template-columns: 1fr; }
+    .flagship-header { flex-direction: column; }
+    .flagship-price { text-align: left; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">MyKindAHelp</a>
-        <div class="nav-links">
-            <a href="services.html" class="active">Services</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="https://mykindahelp.setmore.com/" target="_blank" rel="noopener" class="btn-primary">Book Now</a>
-        </div>
-        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
-    </nav>
 
-    <section class="page-hero">
-        <div class="page-hero-content">
-            <h1>90-Day Done-With-You AI Implementation</h1>
-            <p>Transform your business with our proven three-phase approach. We partner with you every step of the way to implement AI solutions that work for your unique needs—no technical expertise required.</p>
-            <div class="hero-price">
-                <span class="amount">$5,000</span>
-                <span class="period">starting / 90 days</span>
-            </div>
-        </div>
-    </section>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">MyKindAHelp</a>
+    <div class="nav-links">
+      <span class="nav-dropdown-label">Services ▾</span>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://mykindahelp.setmore.com/" class="book-btn">Book Now</a>
+    </div>
+  </div>
+</nav>
 
-    <section class="program-image">
-        <div class="container">
-            <img src="mykindahelppromo.png" alt="90-Day Done-With-You AI Implementation Program Overview">
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Our Services</div>
+    <h1>Simple solutions. <span>Real results.</span></h1>
+    <p>From getting found online to full AI transformation — we meet you where you are and grow with you from there.</p>
+  </div>
+</section>
 
-    <section class="phases-section">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="section-label">The Process</span>
-                <h2 class="section-title">Our Proven 3-Phase Approach</h2>
-                <p class="section-subtitle" style="margin: 0 auto;">A systematic methodology designed to deliver real results for your business.</p>
-            </div>
-            <div class="phases-grid">
-                <div class="phase-card">
-                    <div class="phase-number">1</div>
-                    <h3>Diagnose</h3>
-                    <div class="phase-weeks">Weeks 1–2</div>
-                    <p>We analyze your current operations and identify high-impact opportunities where AI can save time, reduce costs, and improve results. You'll receive a custom roadmap tailored to your business.</p>
-                </div>
-                <div class="phase-card">
-                    <div class="phase-number">2</div>
-                    <h3>Implement</h3>
-                    <div class="phase-weeks">Weeks 3–8</div>
-                    <p>We build and deploy AI solutions alongside your team. You'll get hands-on training, ongoing support, and practical tools that integrate seamlessly with your existing workflows.</p>
-                </div>
-                <div class="phase-card">
-                    <div class="phase-number">3</div>
-                    <h3>Stabilize</h3>
-                    <div class="phase-weeks">Weeks 9–12</div>
-                    <p>We fine-tune your AI systems, measure results, and ensure your team is confident and independent. You'll have everything needed to maintain and scale your new capabilities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="section">
 
-    <section class="whats-included">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="section-label">What You Get</span>
-                <h2 class="section-title">Everything Included</h2>
-                <p class="section-subtitle" style="margin: 0 auto;">A comprehensive package designed to ensure your success.</p>
-            </div>
-            <div class="included-grid">
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>Personalized AI Strategy & Roadmap</h4>
-                        <p>A custom implementation plan based on your specific business needs, goals, and current operations.</p>
-                    </div>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>Weekly Coaching Sessions</h4>
-                        <p>Regular one-on-one sessions to guide implementation, answer questions, and keep you on track.</p>
-                    </div>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>Custom AI Tools Configured</h4>
-                        <p>We set up and configure AI tools specifically for your business workflows and use cases.</p>
-                    </div>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>Team Training & Documentation</h4>
-                        <p>Comprehensive training for you and your team, plus documentation so you can maintain everything independently.</p>
-                    </div>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>90 Days of Direct Expert Access</h4>
-                        <p>Ongoing support throughout the entire program. We're here whenever you need guidance or help.</p>
-                    </div>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <div class="included-content">
-                        <h4>Results Measurement & Optimization</h4>
-                        <p>We track the impact of your AI implementations and fine-tune for maximum results.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- GET FOUND ONLINE -->
+  <div class="section-header">
+    <div class="section-label">Get Found Online</div>
+    <div class="section-title">Websites & Online Visibility</div>
+    <div class="section-sub">Affordable, fast, and built for local service businesses who need a web presence without the hassle.</div>
+  </div>
 
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Book a free discovery call to discuss your business needs and see if the 90-Day AI Implementation program is right for you.</p>
-            <div class="cta-buttons">
-                <a href="https://mykindahelp.setmore.com/" target="_blank" rel="noopener" class="btn-white">Book a Discovery Call</a>
-                <a href="index.html#contact" class="btn-outline-white">Contact Us</a>
-            </div>
-        </div>
-    </section>
+  <div class="cards-grid">
+    <!-- Landing Page -->
+    <div class="card">
+      <span class="popular-badge">Most Popular</span>
+      <span class="card-tag tag-teal">Landing Page</span>
+      <div class="card-price">$250 <span>one-time</span></div>
+      <div class="card-name">Professional Landing Page</div>
+      <div class="card-desc">A clean, mobile-ready page so customers can find you on Google, see your services, and contact you directly. Live in 3–5 business days.</div>
+      <ul class="card-features">
+        <li><span class="check">✓</span>Custom designed for your business</li>
+        <li><span class="check">✓</span>Mobile responsive</li>
+        <li><span class="check">✓</span>Contact section & call-to-action button</li>
+        <li><span class="check">✓</span>Business hours & service area</li>
+        <li><span class="check">✓</span>Social media links</li>
+      </ul>
+      <a href="https://buy.stripe.com/cNidRa0Ce2YO21j7F7eAg01" class="btn-teal">Get Your Page — $250</a>
+      <div class="delivery">⚡ Live in 3–5 business days</div>
+    </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <a href="index.html" class="footer-logo">MyKindAHelp</a>
-            <div class="footer-info">© 2025 MyKindAHelp.com • All Rights Reserved</div>
-            <div class="footer-location">Tampa, FL</div>
-        </div>
-    </footer>
+    <!-- Google Profile Fix -->
+    <div class="card">
+      <span class="card-tag tag-green">Google Profile Fix</span>
+      <div class="card-price">$149 <span>one-time</span></div>
+      <div class="card-name">Google Business Profile Optimization</div>
+      <div class="card-desc">Your Google listing is how customers find you first. We fully optimize it so you show up when someone searches for your service nearby.</div>
+      <ul class="card-features">
+        <li><span class="check">✓</span>Complete profile setup & optimization</li>
+        <li><span class="check">✓</span>Photos, services & hours updated</li>
+        <li><span class="check">✓</span>Business description written for you</li>
+        <li><span class="check">✓</span>Category & keyword optimization</li>
+        <li><span class="check">✓</span>Shows up in Google Maps searches</li>
+      </ul>
+      <a href="https://buy.stripe.com/3cI8wQbgSargbBTgbDeAg02" class="btn-teal">Fix My Google Listing — $149</a>
+      <div class="delivery">⚡ Done in 3–5 business days</div>
+    </div>
+  </div>
+
+  <!-- BUNDLE -->
+  <div class="bundle-card">
+    <div>
+      <span class="card-tag tag-purple">Best Value</span>
+      <div class="bundle-title">Landing Page + Google Profile Bundle</div>
+      <div class="bundle-desc">Get both services together — your own professional page and a fully optimized Google listing. Everything a customer needs to find you, trust you, and call you.</div>
+      <span class="bundle-save">Save $100 vs buying separately</span>
+    </div>
+    <div class="bundle-price-block">
+      <div class="bundle-was">$399 separately</div>
+      <div class="bundle-price">$299</div>
+      <a href="https://buy.stripe.com/cNi5kEfx80QGbBT3oReAg00" class="btn-teal" style="margin-top: 1.25rem;">Get the Bundle — $299</a>
+    </div>
+  </div>
+
+  <!-- AI SCHEDULING -->
+  <div class="section-header">
+    <div class="section-label">Work Smarter</div>
+    <div class="section-title">AI Scheduling & Admin</div>
+    <div class="section-sub">Stop missing calls and losing jobs. Let AI handle the bookings so you can focus on the work.</div>
+  </div>
+
+  <div class="ai-card" style="margin-bottom: 3rem;">
+    <div>
+      <span class="card-tag tag-amber">Monthly Add-On</span>
+      <div class="card-price" style="font-size: 2.5rem; color: var(--navy);">$49<span style="font-size: 0.9rem; color: var(--muted);">/month</span></div>
+      <div class="card-name" style="font-size: 1.1rem;">AI Booking & Admin Automation</div>
+      <div class="card-desc" style="margin-bottom: 1.5rem;">Most service business owners miss jobs because they're out in the field when customers call. Our AI handles booking requests, confirmations, and your calendar automatically — 24/7.</div>
+      <a href="/#contact" class="btn-teal" style="display: inline-block; width: auto; padding: 0.75rem 1.75rem;">Talk to Us About AI</a>
+    </div>
+    <div class="ai-features">
+      <div class="ai-feature">
+        <h4>Automated Booking</h4>
+        <p>Customers book directly from your page or Google listing. No back-and-forth calls needed.</p>
+      </div>
+      <div class="ai-feature">
+        <h4>Instant Confirmations</h4>
+        <p>Automatic confirmation texts and reminders. Fewer no-shows, more revenue.</p>
+      </div>
+      <div class="ai-feature">
+        <h4>24/7 Availability</h4>
+        <p>Customers can book at any time — even while you're on a job or asleep.</p>
+      </div>
+      <div class="ai-feature">
+        <h4>Calendar Management</h4>
+        <p>Your schedule stays organized and up to date without lifting a finger.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAGSHIP -->
+  <div class="section-header">
+    <div class="section-label">Full Transformation</div>
+    <div class="section-title">90-Day AI Implementation</div>
+    <div class="section-sub">For business owners ready to fully integrate AI across their operations — with a partner guiding every step.</div>
+  </div>
+
+  <div class="flagship">
+    <div class="flagship-header">
+      <div>
+        <span class="card-tag tag-amber" style="margin-bottom: 0.75rem; display: inline-block;">Flagship Program</span>
+        <h2>90-Day Done-With-You AI Implementation</h2>
+        <p>Transform your business with our proven three-phase approach. No technical skills required.</p>
+      </div>
+      <div class="flagship-price">
+        <div class="price">$5,000</div>
+        <div class="period">starting / 90 days</div>
+        <a href="https://mykindahelp.setmore.com/" class="btn-white" style="margin-top: 1rem; display: inline-block;">Book Discovery Call</a>
+      </div>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">Phase 1 — Weeks 1–2</div>
+        <h4>Diagnose</h4>
+        <p>We analyze your operations and identify where AI saves the most time. You receive a custom roadmap.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 2 — Weeks 3–8</div>
+        <h4>Implement</h4>
+        <p>We build and deploy AI tools alongside your team with hands-on training and support.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 3 — Weeks 9–12</div>
+        <h4>Stabilize</h4>
+        <p>We fine-tune your AI systems and ensure your team is fully independent.</p>
+      </div>
+    </div>
+
+    <div class="flagship-features">
+      <div class="flagship-feat">Personalized AI strategy & roadmap</div>
+      <div class="flagship-feat">Weekly one-on-one coaching sessions</div>
+      <div class="flagship-feat">Custom AI tools configured for your workflows</div>
+      <div class="flagship-feat">Full team training & documentation</div>
+      <div class="flagship-feat">90 days of direct expert access</div>
+      <div class="flagship-feat">Results measurement & optimization</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-section">
+  <h2>Not sure where to start?</h2>
+  <p>Start small. A landing page or Google fix gets you found today — the door to AI stays open whenever you're ready.</p>
+  <div class="cta-buttons">
+    <a href="https://buy.stripe.com/cNidRa0Ce2YO21j7F7eAg01" class="btn-main">Get Your Landing Page — $250</a>
+    <a href="/#contact" class="btn-secondary">Talk to Us First</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 MyKindAHelp.com · Tampa, FL · <a href="mailto:info@mykindahelp.com" style="color: var(--muted);">info@mykindahelp.com</a></p>
+</footer>
+
 </body>
 </html>
