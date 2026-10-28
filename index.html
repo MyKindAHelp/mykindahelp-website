@@ -230,6 +230,11 @@
             transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         .for-card:hover { transform: translateY(-6px); border-color: var(--color-sage); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .for-card-img {
+            width: 100%; height: 180px; object-fit: cover;
+            border-radius: 12px; margin-bottom: 0.5rem;
+            display: block;
+        }
         .for-icon { font-size: 1.75rem; margin-bottom: 0.25rem; }
         .for-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: #FFFFFF; }
         .for-card p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
@@ -459,17 +464,17 @@
 
         <div class="for-grid">
             <div class="for-card reveal">
-                <div class="for-icon">🔧</div>
+                <img class="for-card-img" src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=80&fit=crop" alt="Auto repair mechanic working on a vehicle">
                 <h3>Auto Repair &amp; Tire Shops</h3>
                 <p>Struggling with no-shows, manual follow-ups, or lost repair approvals? We know your workflow and where the money leaks.</p>
             </div>
             <div class="for-card reveal">
-                <div class="for-icon">❄️</div>
+                <img class="for-card-img" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&fit=crop" alt="HVAC technician working on an air conditioning unit">
                 <h3>HVAC &amp; Home Services</h3>
                 <p>Managing service scheduling, technician dispatch, and customer follow-up manually? There's a better way that doesn't require new software.</p>
             </div>
             <div class="for-card reveal">
-                <div class="for-icon">🏡</div>
+                <img class="for-card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80&fit=crop" alt="Small business owner at their shop counter">
                 <h3>Any Owner-Run Shop</h3>
                 <p>If you wear multiple hats and your admin work eats into your revenue, this assessment will show you what to hand off to AI first.</p>
             </div>
