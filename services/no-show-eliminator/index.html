@@ -1,701 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-78JLYGH1P7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-78JLYGH1P7');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No-Show Eliminator for Auto Repair Shops | MyKindaHelp</title>
-    <meta name="description" content="Stop losing $15K-$20K per year to appointment no-shows. AI-powered reminders and customer communication automation for Tampa auto repair shops. $599, delivered in 3-7 days.">
-    <meta name="keywords" content="auto repair no-shows, appointment reminders AI, Tampa auto shop, no-show reduction, customer communication automation">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="Is your service shop AI-ready? Take a free assessment to find out where AI can save you time and money. Tampa-based. No pitch. Just answers.">
+    <meta name="google-site-verification" content="PAckTaM0bXP5oSnGsZ8KdM5GOtSOmTwmmYh5hoPszG0" />
+    <title>Is Your Business AI-Ready? Free Assessment | MyKindaHelp | Tampa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --color-primary: #3BA3D0;
-            --color-secondary: #8BC53F;
-            --color-dark: #3A4A5C;
-            --color-light: #EEF4F7;
-            --color-text: #2C3E50;
-            --color-text-muted: #5A6C7D;
-            --color-border: #D5E0E6;
-            --color-bg-light: #F9FCFE;
+            --color-terracotta:  #3BA3D0;
+            --color-terra-dark:  #2B8AB5;
+            --color-terra-light: #6BBDE0;
+            --color-charcoal:    #3A4A5C;
+            --color-warm-gray:   #5A6A7A;
+            --color-light-gray:  #D0DDE5;
+            --color-sage:        #8BC53F;
+            --color-sage-dark:   #6BA32E;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body:    'Instrument Sans', -apple-system, sans-serif;
         }
 
-        body {
-            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--color-text);
-            line-height: 1.6;
-            background-color: #ffffff;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: #000000; color: #FFFFFF; line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp    { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse     { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            color: var(--color-dark);
-            margin-bottom: 1rem;
-            line-height: 1.2;
+        /* ── NAV ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59,163,208,0.2);
+            padding: 0 4%; height: 66px;
+            display: flex; align-items: center; justify-content: space-between;
+            animation: slideDown 0.6s ease-out;
+        }
+        .nav-logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-terracotta); }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.8); transition: color 0.2s; position: relative; padding: 0.5rem 0; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--color-terracotta), var(--color-sage)); transition: width 0.3s; }
+        .nav-links a:hover { color: var(--color-terracotta); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark));
+            color: #fff !important; padding: 0.7rem 1.6rem; border-radius: 50px;
+            font-weight: 600; font-size: 0.875rem;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(59,163,208,0.3);
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59,163,208,0.4); }
+        .nav-cta::after { display: none !important; }
+
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-hamburger span { display: block; width: 25px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+        .nav-mobile { display: none; position: fixed; top: 66px; left: 0; right: 0; bottom: 0; background: #0a0a0a; z-index: 99; padding: 2rem 5%; flex-direction: column; gap: 1.25rem; overflow-y: auto; }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a { font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.8); padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .nav-mobile .mobile-cta { margin-top: 0.5rem; background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark)); color: #fff; text-align: center; padding: 1rem; border-radius: 50px; font-weight: 600; border: none; border-bottom: none; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 8rem 4% 5rem;
+            position: relative; overflow: hidden;
+        }
+        /* Tampa backdrop — preserved from original */
+        .hero-bg {
+            position: absolute; inset: 0;
+            background-image: url('tampa-backdrop.jpg');
+            background-size: cover; background-position: center;
+            opacity: 0.28; z-index: 0;
+        }
+        /* Dark overlay */
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.85) 100%);
+            z-index: 0;
+        }
+        /* Subtle radial accent */
+        .hero-glow {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 65% 55% at 50% 55%, rgba(59,163,208,0.10), transparent);
+            pointer-events: none; z-index: 0;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .hero-inner {
+            max-width: 860px; margin: 0 auto;
+            position: relative; z-index: 1;
+            text-align: center;
+            animation: fadeUp 0.8s ease-out;
         }
 
-        h2 {
-            font-size: 2rem;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        h4 {
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        a {
-            color: var(--color-primary);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        a:hover {
-            border-bottom-color: var(--color-primary);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--color-light) 0%, #ffffff 100%);
-            border-bottom: 1px solid var(--color-border);
-            padding: 2rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .logo {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.3rem;
-            color: var(--color-dark);
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(139,197,63,0.14); border: 1px solid rgba(139,197,63,0.32);
+            border-radius: 50px; padding: 0.5rem 1.2rem;
+            font-size: 0.82rem; font-weight: 700; color: #a8e05a;
+            letter-spacing: 0.06em; text-transform: uppercase;
             margin-bottom: 2rem;
         }
-
-        .breadcrumb {
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-bottom: 4rem;
-        }
-
-        .hero-headline {
-            color: var(--color-primary);
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
+        .pill-dot { width: 7px; height: 7px; background: var(--color-sage); border-radius: 50%; animation: pulse 1.8s ease-in-out infinite; }
 
         .hero h1 {
-            margin-bottom: 1.5rem;
-            line-height: 1.15;
-        }
-
-        .financial-impact {
-            background-color: var(--color-light);
-            border-left: 4px solid var(--color-secondary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-        }
-
-        .financial-impact strong {
-            display: block;
-            font-size: 1.8rem;
-            color: var(--color-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--color-primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            border: 2px solid var(--color-primary);
-            transition: all 0.3s;
-            margin: 1rem 1rem 1rem 0;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--color-primary);
-            border-bottom: none;
-        }
-
-        .cta-button.secondary {
-            background-color: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
-
-        .cta-button.secondary:hover {
-            background-color: var(--color-primary);
-            color: white;
-        }
-
-        /* Problem-Solution Section */
-        .problem-solution {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin: 4rem 0;
-            align-items: start;
-        }
-
-        .problem-solution h3 {
-            margin-top: 0;
-        }
-
-        .problem, .solution {
-            padding: 2rem;
-            background-color: var(--color-bg-light);
-            border-radius: 4px;
-        }
-
-        .problem {
-            border-left: 4px solid #DC3545;
-        }
-
-        .solution {
-            border-left: 4px solid var(--color-secondary);
-        }
-
-        .problem h3 {
-            color: #DC3545;
-        }
-
-        .solution h3 {
-            color: var(--color-secondary);
-        }
-
-        ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.75rem;
-            line-height: 1.6;
-        }
-
-        /* The Offer Section */
-        .offer {
-            background-color: var(--color-light);
-            padding: 3rem 2rem;
-            border-radius: 4px;
-            margin: 4rem 0;
-            border: 2px solid var(--color-primary);
-        }
-
-        .offer h2 {
-            margin-top: 0;
-        }
-
-        .offer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .offer-item {
-            text-align: center;
-        }
-
-        .offer-item strong {
-            display: block;
-            font-size: 1.4rem;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .offer-item p {
-            font-size: 0.95rem;
-            color: var(--color-text-muted);
-        }
-
-        .price-tag {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin: 1.5rem 0;
-        }
-
-        /* What's Included Section */
-        .included {
-            background-color: var(--color-bg-light);
-            padding: 2rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-
-        .check-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .check-item::before {
-            content: "✓";
-            color: var(--color-secondary);
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            margin: 4rem 0;
-            padding: 3rem 2rem;
-            background-color: var(--color-light);
-            border-radius: 4px;
-        }
-
-        .testimonials h2 {
-            margin-top: 0;
-        }
-
-        .testimonial-placeholder {
-            background-color: #ffffff;
-            border: 2px dashed var(--color-border);
-            border-radius: 4px;
-            padding: 2rem;
-            text-align: center;
-            color: var(--color-text-muted);
-            margin: 2rem 0;
-        }
-
-        .testimonial-framework {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-left: 4px solid var(--color-primary);
-            margin: 1.5rem 0;
-            font-size: 0.9rem;
-            font-family: 'Courier New', monospace;
-            color: var(--color-text-muted);
-        }
-
-        /* FAQ Section */
-        .faq {
-            margin: 4rem 0;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--color-border);
-            padding: 1.5rem 0;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            font-weight: 600;
-            color: var(--color-dark);
-            cursor: pointer;
-            user-select: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question::after {
-            content: "+";
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            transition: transform 0.3s;
-        }
-
-        .faq-item.open .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            display: none;
-            margin-top: 1rem;
-            color: var(--color-text-muted);
-            line-height: 1.7;
-        }
-
-        .faq-item.open .faq-answer {
-            display: block;
-        }
-
-        /* Internal Links Section */
-        .related-content {
-            background-color: var(--color-bg-light);
-            padding: 2rem;
-            border-radius: 4px;
-            margin: 4rem 0;
-        }
-
-        .related-content h3 {
-            margin-top: 0;
-        }
-
-        .content-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .content-link {
-            padding: 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .content-link:hover {
-            border-color: var(--color-primary);
-            background-color: #ffffff;
-            border-bottom: 1px solid var(--color-primary);
-        }
-
-        .content-link strong {
-            display: block;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .content-link p {
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-            margin: 0;
-        }
-
-        /* Footer CTA */
-        .footer-cta {
-            background-color: var(--color-dark);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 4px;
-            margin: 4rem 0 2rem 0;
-            text-align: center;
-        }
-
-        .footer-cta h2 {
-            color: white;
-            margin-top: 0;
-        }
-
-        .footer-cta p {
-            color: #E8EDF3;
+            font-family: var(--font-display);
+            font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+            line-height: 1.08; color: #FFFFFF;
             margin-bottom: 1.5rem;
         }
-
-        .footer-cta .cta-button {
-            background-color: var(--color-secondary);
-            border-color: var(--color-secondary);
-            color: var(--color-dark);
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-sage));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .footer-cta .cta-button:hover {
-            background-color: transparent;
-            color: var(--color-secondary);
+        .hero-sub {
+            font-size: 1.15rem; color: rgba(255,255,255,0.65); line-height: 1.8;
+            max-width: 620px; margin: 0 auto 2.75rem;
         }
 
-        /* Contact Info */
-        .contact-info {
-            text-align: center;
-            color: var(--color-text-muted);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border);
-        }
+        .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-        .contact-info p {
-            margin-bottom: 0.5rem;
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+            padding: 0.9rem 2.1rem; border-radius: 50px;
+            border: none; cursor: pointer; transition: all 0.3s; line-height: 1;
         }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark));
+            color: #fff; box-shadow: 0 4px 20px rgba(59,163,208,0.38);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,163,208,0.48); }
+        .btn-outline {
+            background: transparent; color: rgba(255,255,255,0.8);
+            border: 2px solid rgba(255,255,255,0.22);
+        }
+        .btn-outline:hover { border-color: var(--color-terracotta); color: var(--color-terracotta); }
+        .btn-lg { padding: 1.05rem 2.4rem; font-size: 1.05rem; }
 
-        /* Responsive Design */
+        .hero-trust {
+            display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;
+            margin-top: 3rem; padding-top: 2.25rem;
+            border-top: 1px solid rgba(255,255,255,0.10);
+        }
+        .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.5); }
+        .trust-item svg { color: var(--color-sage); flex-shrink: 0; }
+
+        /* ── WHAT YOU GET ── */
+        .what-section {
+            padding: 6rem 4%;
+            background: #0a0a0a;
+            position: relative;
+        }
+        .what-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(59,163,208,0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(139,197,63,0.08) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .what-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .section-label {
+            display: inline-block; font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--color-terracotta); background: rgba(59,163,208,0.1);
+            padding: 0.5rem 1rem; border-radius: 50px; margin-bottom: 1rem;
+        }
+        .section-title {
+            font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.75rem);
+            color: #FFFFFF; line-height: 1.2; margin-bottom: 1rem;
+        }
+        .section-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 580px; line-height: 1.75; }
+        .section-header { margin-bottom: 3.5rem; }
+        .section-header.center { text-align: center; }
+        .section-header.center .section-sub { margin: 0 auto; }
+
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+        .step-card {
+            background: #1a1a1a;
+            border: 1px solid rgba(59,163,208,0.2);
+            border-radius: 20px; padding: 2rem 1.6rem;
+            transition: all 0.3s;
+            display: flex; flex-direction: column; gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .step-card:hover { transform: translateY(-6px); border-color: var(--color-terracotta); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .step-num {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark));
+            color: #fff; font-family: var(--font-display); font-size: 1.15rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; box-shadow: 0 4px 12px rgba(59,163,208,0.3);
+        }
+        .step-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: #FFFFFF; line-height: 1.2; }
+        .step-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+        /* ── WHO IT'S FOR ── */
+        .for-section { padding: 6rem 4%; background: #000000; }
+        .for-inner { max-width: 1200px; margin: 0 auto; }
+        .for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .for-card {
+            background: #1a1a1a;
+            border: 1px solid rgba(59,163,208,0.15);
+            border-radius: 20px; padding: 2rem 1.75rem;
+            display: flex; flex-direction: column; gap: 0.75rem;
+            transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .for-card:hover { transform: translateY(-6px); border-color: var(--color-sage); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .for-icon { font-size: 1.75rem; margin-bottom: 0.25rem; }
+        .for-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: #FFFFFF; }
+        .for-card p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+        /* ── FINAL CTA ── */
+        .cta-section {
+            padding: 7rem 4%;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(59,163,208,0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(139,197,63,0.08) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .cta-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+        .cta-section h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.75rem); color: #FFFFFF; margin-bottom: 1.25rem; line-height: 1.15; }
+        .cta-section p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2.25rem; }
+
+        /* ── CONTACT ── */
+        .contact-section {
+            padding: 6rem 4%;
+            background: linear-gradient(180deg, #0a0a0a, #000000);
+            position: relative;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(139,197,63,0.07) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(59,163,208,0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .contact-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;
+            background: #1a1a1a; border-radius: 32px; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            position: relative; z-index: 1;
+            border: 1px solid rgba(59,163,208,0.2);
+        }
+        .contact-left {
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark));
+            padding: 3rem; color: #fff;
+        }
+        .contact-left h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem; line-height: 1.2; }
+        .contact-left p { color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 2.5rem; font-size: 0.95rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+        .contact-item { display: flex; align-items: center; gap: 0.9rem; }
+        .contact-item-icon {
+            width: 46px; height: 46px; background: rgba(255,255,255,0.2);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;
+        }
+        .contact-item span { font-size: 0.95rem; }
+
+        .contact-form { padding: 3rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1.15rem; }
+        .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.85rem 1.1rem;
+            border: 2px solid rgba(59,163,208,0.25); border-radius: 12px;
+            font-family: var(--font-body); font-size: 0.95rem;
+            color: #FFFFFF; background: #0a0a0a;
+            transition: all 0.3s; outline: none;
+        }
+        .form-group select option { background: #1a1a1a; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--color-terracotta);
+            background: #111; box-shadow: 0 0 0 4px rgba(59,163,208,0.1);
+        }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+        .btn-submit {
+            width: 100%; padding: 1.1rem 2rem;
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terra-dark));
+            color: #fff; border: none; border-radius: 12px;
+            font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(59,163,208,0.3);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(59,163,208,0.4); }
+
+        /* ── FOOTER ── */
+        .footer {
+            padding: 2rem 4%; background: #000;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+        }
+        .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--color-terracotta); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .steps-grid { grid-template-columns: 1fr 1fr; }
+            .contact-inner { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .problem-solution {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .offer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            header {
-                padding: 1rem 0;
-                margin-bottom: 2rem;
-            }
-
-            .cta-button {
-                display: block;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
-
-            .price-tag {
-                font-size: 2rem;
-            }
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .for-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
         }
+        @media (max-width: 580px) {
+            .hero { padding: 7rem 4% 4rem; }
+            .what-section, .for-section, .cta-section, .contact-section { padding: 4rem 4%; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .hero-trust { gap: 1.25rem; }
+            .hero-cta-group { flex-direction: column; align-items: center; }
+        }
+
+        /* scroll reveal */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">MyKindaHelp</div>
-            <div class="breadcrumb">Services / No-Show Eliminator</div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">MyKindaHelp</a>
+    <ul class="nav-links">
+        <li><a href="#what-you-get">How It Works</a></li>
+        <li><a href="#who-its-for">Who It's For</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Take the Free Assessment</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+    <a href="#what-you-get">How It Works</a>
+    <a href="#who-its-for">Who It's For</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="mobile-cta">Take the Free Assessment</a>
+</div>
+
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-inner">
+        <div class="hero-pill">
+            <span class="pill-dot"></span>
+            Free Assessment
         </div>
-    </header>
 
-    <main class="container">
-        <!-- Hero Section with Financial Impact -->
-        <section class="hero">
-            <div class="hero-headline">AI-Powered Appointment Management</div>
-            <h1>Stop Losing $15K–$20K Every Year to No-Shows</h1>
-            <p>Your shop is hemorrhaging revenue. A typical auto repair business with a 15–20% no-show rate loses between $15,000 and $20,000 per year in missed appointments — that's real money you can reclaim.</p>
-            
-            <div class="financial-impact">
-                <strong>Average Tampa shop no-show cost:</strong>
-                $150–$200 per missed appointment × 15–20% no-show rate = $15K–$20K annually
-            </div>
+        <h1>Is Your Business <em>AI-Ready?</em></h1>
 
-            <p>The No-Show Eliminator fixes this with AI-powered reminders, follow-ups, and customer communication automation — no contracts, no complexity, just results.</p>
+        <p class="hero-sub">
+            Diagnose where AI can help you save time and money. We assess your processes, identify the highest-impact opportunities, and hand you a clear roadmap—no jargon, no pitch.
+        </p>
 
-            <a href="#offer" class="cta-button">See the Offer</a>
-            <a href="tel:(813)358-3309" class="cta-button secondary">Call: (813) 358-3309</a>
-        </section>
-
-        <!-- Problem & Solution -->
-        <section class="problem-solution">
-            <div class="problem">
-                <h3>The Problem</h3>
-                <p>Your team is already drowning in manual work:</p>
-                <ul>
-                    <li>Manual reminder calls and texts eat up hours</li>
-                    <li>Customers forget appointments — you lose revenue</li>
-                    <li>Follow-up on cancellations is hit-or-miss</li>
-                    <li>No visibility into who's likely to no-show</li>
-                    <li>Each no-show means lost labor, lost parts, lost profit</li>
-                </ul>
-            </div>
-
-            <div class="solution">
-                <h3>The Solution</h3>
-                <p>Automation that works 24/7:</p>
-                <ul>
-                    <li>AI sends personalized reminders (24 hrs, 4 hrs before appointment)</li>
-                    <li>Automated SMS/email follow-up for cancellations</li>
-                    <li>Instant rescheduling links — no phone tag</li>
-                    <li>Pattern detection: Know which customers typically no-show</li>
-                    <li>Your team gets freed up to focus on actual repairs</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- The Offer -->
-        <section id="offer" class="offer">
-            <h2>The No-Show Eliminator</h2>
-            <p>One-time setup. No contracts. No monthly fees. Just AI that works.</p>
-
-            <div class="offer-grid">
-                <div class="offer-item">
-                    <strong>$599</strong>
-                    <p>Flat fee, one time</p>
-                </div>
-                <div class="offer-item">
-                    <strong>3–7 Days</strong>
-                    <p>Full setup and deployment</p>
-                </div>
-                <div class="offer-item">
-                    <strong>$15K–$20K</strong>
-                    <p>Annual savings potential</p>
-                </div>
-            </div>
-
-            <h3>What's Included</h3>
-            <div class="included">
-                <div class="check-item">Connected to your existing appointment system (or we'll help set one up)</div>
-                <div class="check-item">Automated reminder campaigns tuned to your shop's schedule</div>
-                <div class="check-item">24-hour and 4-hour pre-appointment reminders (SMS + email)</div>
-                <div class="check-item">Cancellation follow-up and instant rescheduling links</div>
-                <div class="check-item">Monthly performance reports showing no-show reduction</div>
-                <div class="check-item">AI configuration for your specific customer base and service types</div>
-                <div class="check-item">30-day check-in to optimize performance</div>
-            </div>
-
-            <h3>Why This Works</h3>
-            <p>No-shows happen for three reasons: customers forget, they don't know what to bring, or life happens. Reminders fix reason #1. Follow-ups catch reason #3 before the appointment is lost. Automation does all of this while you're fixing cars.</p>
-
-            <a href="tel:(813)358-3309" class="cta-button">Get Started Now</a>
-            <a href="mailto:info@mykindahelp.com" class="cta-button secondary">Send Details to My Email</a>
-        </section>
-
-        <!-- Testimonials Placeholder -->
-        <section class="testimonials">
-            <h2>Real Results from Tampa Shop Owners</h2>
-            <p>As we deploy the No-Show Eliminator with real clients, we'll share their stories here. These won't be generic quotes — they'll be concrete numbers from shops just like yours.</p>
-            
-            <div class="testimonial-placeholder">
-                <p><strong>Coming soon:</strong> Actual case studies from Tampa auto shops showing no-show reduction % and revenue recovered</p>
-            </div>
-
-            <h4>Testimonial Framework (Our Template)</h4>
-            <div class="testimonial-framework">
-[Client Name] | [Business Type] | [Location]<br>
-<br>
-Problem: [What was happening before]<br>
-Solution: [How No-Show Eliminator fixed it]<br>
-Results: [Specific no-show rate improvement + $ recovered/year]
-            </div>
-
-            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 1.5rem;">We don't use placeholder or fabricated testimonials. When we have real client wins to share, they'll appear here with specific numbers, names (with permission), and measurable outcomes.</p>
-        </section>
-
-        <!-- FAQ -->
-        <section class="faq">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-item">
-                <div class="faq-question">What systems does this integrate with?</div>
-                <div class="faq-answer">We support most appointment systems: Square, Google Calendar, Housecall Pro, Jobber, and custom systems. If your system has an API or export function, we can connect it. We'll confirm compatibility during the initial call.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How long does setup take?</div>
-                <div class="faq-answer">Typically 3–7 days from kickoff to live. We need your customer data, appointment system access, and approval on the reminder templates. Setup includes testing, configuration, and a final walkthrough with your team.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Do I have to buy software licenses or pay monthly?</div>
-                <div class="faq-answer">No. This is a one-time $599 fee. No contracts, no monthly subscriptions, no surprise charges. You own the automation once it's live.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What if my appointment system is old or basic?</div>
-                <div class="faq-answer">We work with systems from paper scheduling up to enterprise platforms. If you export appointments to a spreadsheet, we can work with that. If your system is proprietary, we'll assess during the discovery call.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Can I customize the reminder messages?</div>
-                <div class="faq-answer">Absolutely. We'll draft initial templates based on your shop's style, then you approve each one. You can customize tone, service calls-out, links to your website, whatever helps your customers remember.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What happens if something breaks after deployment?</div>
-                <div class="faq-answer">You get a 30-day optimization window included in the $599. During that time, we monitor performance, tweak automation rules, and fix any issues. After that, you can reach out anytime for updates or adjustments (we'll discuss pricing for ongoing support separately).</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How much will no-shows actually drop?</div>
-                <div class="faq-answer">Most shops see 20–40% reduction in no-shows within the first month. Some see higher. The baseline matters — shops that already had some reminder process won't see as dramatic a lift as those starting from zero. We'll set realistic targets during the kickoff based on your current data.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Is this right for my shop size?</div>
-                <div class="faq-answer">Yes, if you schedule appointments and no-shows hurt your revenue. Whether you're a 2-person tire shop or a 20-person repair facility, the math is the same: reminders work. Smaller shops often benefit most because labor is already stretched thin.</div>
-            </div>
-        </section>
-
-        <!-- Related Content / Internal Links -->
-        <section class="related-content">
-            <h3>Learn More About AI Automation for Your Shop</h3>
-            <p>The No-Show Eliminator is your first step into AI automation. Once you see the results, there's a lot more we can automate.</p>
-
-            <div class="content-links">
-                <a href="/blog/why-your-tampa-auto-repair-shop-isnt-getting-enough-customers" class="content-link">
-                    <strong>Blog: Why Your Tampa Auto Repair Shop Isn't Getting Enough Customers</strong>
-                    <p>Common revenue leaks in auto repair, from no-shows to weak follow-up, and how to fix them.</p>
-                </a>
-
-                <a href="/services" class="content-link">
-                    <strong>Other Services</strong>
-                    <p>See our complete AI implementation package, Google Business Profile optimization, and landing pages.</p>
-                </a>
-
-                <a href="/blog" class="content-link">
-                    <strong>Blog: Auto Repair Marketing Resources</strong>
-                    <p>More tactics and strategies for increasing customer acquisition and retention in Tampa.</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="footer-cta">
-            <h2>Ready to Stop Losing Money to No-Shows?</h2>
-            <p>Get the No-Show Eliminator live in your shop in 3–7 days. $599, no contracts, no complexity.</p>
-            <a href="tel:(813)358-3309" class="cta-button">Call (813) 358-3309 Today</a>
-            <p style="margin-top: 1.5rem; font-size: 0.9rem;">Or email <a href="mailto:info@mykindahelp.com" style="color: var(--color-secondary);">info@mykindahelp.com</a> with questions.</p>
-        </section>
-
-        <!-- Contact Info -->
-        <div class="contact-info">
-            <p><strong>MyKindaHelp</strong> | AI Automation for Tampa Auto Shops</p>
-            <p>Phone: <a href="tel:(813)358-3309">(813) 358-3309</a> | Email: <a href="mailto:info@mykindahelp.com">info@mykindahelp.com</a></p>
-            <p><a href="https://mykindahelp.com">mykindahelp.com</a></p>
+        <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary btn-lg">Take the Free Assessment</a>
+            <a href="#what-you-get" class="btn btn-outline btn-lg">See What You Get</a>
         </div>
-    </main>
 
-    <script>
-        // FAQ Toggle Functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.closest('.faq-item');
-                faqItem.classList.toggle('open');
-            });
+        <div class="hero-trust">
+            <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                No cost, no commitment
+            </div>
+            <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Practical AI — not buzzwords
+            </div>
+            <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Tampa-based
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- WHAT YOU GET -->
+<section class="what-section" id="what-you-get" aria-label="How it works">
+    <div class="what-inner">
+        <div class="section-header center reveal">
+            <span class="section-label">What You Get</span>
+            <h2 class="section-title">A clear path to practical AI adoption</h2>
+            <p class="section-sub">Four steps. One actionable report. You walk away knowing exactly where to start.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card reveal">
+                <div class="step-num">1</div>
+                <h3>Discover</h3>
+                <p>We assess your current processes, daily workflows, and biggest operational headaches in a short conversation.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">2</div>
+                <h3>Diagnose</h3>
+                <p>We identify the specific areas where AI can make the biggest difference—time saved, revenue recovered, admin eliminated.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">3</div>
+                <h3>Prioritize</h3>
+                <p>We rank each opportunity by impact and effort so you know what to tackle first and what to save for later.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">4</div>
+                <h3>Opportunity Roadmap</h3>
+                <p>You receive a written roadmap with specific recommendations—your clear path to saving time and money with AI.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- WHO IT'S FOR -->
+<section class="for-section" id="who-its-for" aria-label="Who this is for">
+    <div class="for-inner">
+        <div class="section-header reveal">
+            <span class="section-label">Who It's For</span>
+            <h2 class="section-title">Built for owner-operated service businesses</h2>
+            <p class="section-sub">If you run a tight operation and want to know where AI fits without wading through vendor pitches, this is for you.</p>
+        </div>
+
+        <div class="for-grid">
+            <div class="for-card reveal">
+                <div class="for-icon">🔧</div>
+                <h3>Auto Repair &amp; Tire Shops</h3>
+                <p>Struggling with no-shows, manual follow-ups, or lost repair approvals? We know your workflow and where the money leaks.</p>
+            </div>
+            <div class="for-card reveal">
+                <div class="for-icon">❄️</div>
+                <h3>HVAC &amp; Home Services</h3>
+                <p>Managing service scheduling, technician dispatch, and customer follow-up manually? There's a better way that doesn't require new software.</p>
+            </div>
+            <div class="for-card reveal">
+                <div class="for-icon">🏡</div>
+                <h3>Any Owner-Run Shop</h3>
+                <p>If you wear multiple hats and your admin work eats into your revenue, this assessment will show you what to hand off to AI first.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="cta-section" aria-label="Call to action">
+    <div class="cta-inner reveal">
+        <span class="section-label">No Risk</span>
+        <h2>Find Out Where You're Leaving Money on the Table</h2>
+        <p>The assessment takes 15 minutes. The roadmap you get back is yours to keep, implement, or hand to whoever builds your systems. No strings attached.</p>
+        <a href="#contact" class="btn btn-primary btn-lg">Take the Free Assessment</a>
+    </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact" aria-label="Contact">
+    <div class="contact-inner">
+        <div class="contact-left">
+            <h2>Tell us about your business</h2>
+            <p>Fill this out and we'll be in touch within 24 hours to schedule your free assessment. No sales pitch—just a focused conversation about your operation and where AI can help.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <span>Tampa, FL 33610</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <span>info@mykindahelp.com</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <span>813-358-3309</span>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/info@mykindahelp.com" method="POST">
+            <input type="hidden" name="_subject" value="Free AI Assessment Request — MyKindaHelp">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required placeholder="John">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required placeholder="Smith">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="businessName">Business Name *</label>
+                <input type="text" id="businessName" name="businessName" required placeholder="Smith Auto Repair">
+            </div>
+
+            <div class="form-group">
+                <label for="businessType">Business Type *</label>
+                <select id="businessType" name="businessType" required>
+                    <option value="" disabled selected>Select your industry</option>
+                    <option value="auto-repair">Auto Repair / Tire Shop</option>
+                    <option value="hvac">HVAC</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrician</option>
+                    <option value="home-services">Other Home Services</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="john@smithauto.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="813-555-0100">
+            </div>
+
+            <div class="form-group">
+                <label for="biggestPain">Biggest operational headache right now (optional)</label>
+                <textarea id="biggestPain" name="biggestPain" placeholder="e.g. no-shows, too much admin, slow follow-ups..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Request Free Assessment — We'll Be in Touch Within 24 Hours</button>
+        </form>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-copy">© 2026 MyKindaHelp.com · Tampa, FL · All Rights Reserved</div>
+    <div class="footer-links">
+        <a href="#what-you-get">How It Works</a>
+        <a href="#contact">Contact</a>
+    </div>
+</footer>
+
+
+<script>
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+            hamburger.setAttribute('aria-expanded', 'false');
         });
-    </script>
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form feedback
+    const form = document.querySelector('.contact-form');
+    if (form) {
+        form.addEventListener('submit', function() {
+            const btn = this.querySelector('.btn-submit');
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+        });
+    }
+</script>
 </body>
 </html>
